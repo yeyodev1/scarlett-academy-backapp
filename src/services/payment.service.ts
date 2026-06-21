@@ -81,7 +81,7 @@ async function preparePaymentRecord(
     currency: "USD",
     clientTransactionId,
     isNewUser: isNew,
-    plainPassword: isNew ? plainPassword : null,
+    plainPassword,
   });
 
   return { amount, amountCents, clientTransactionId, isNewUser: isNew, plainPassword, userId };
