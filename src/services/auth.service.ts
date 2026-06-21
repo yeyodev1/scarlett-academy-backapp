@@ -193,6 +193,26 @@ export async function uploadProfilePicture(
   return sanitizeUser(user);
 }
 
+export async function deleteProfilePicture(userId: string) {
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new CustomError("User not found", 404);
+  }
+
+  try {
+    await cloudinary.uploader.destroy(
+      `academy/profile-pictures/user-${userId}`,
+    );
+  } catch {
+    // Ignore Cloudinary errors — image may not exist
+  }
+
+  user.profilePicture = null;
+  await user.save();
+
+  return sanitizeUser(user);
+}
+
 export async function forgotPassword(email: string, frontendUrl: string) {
   const normalizedEmail = email.toLowerCase().trim();
   const user = await User.findOne({ email: normalizedEmail });

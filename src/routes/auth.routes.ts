@@ -16,6 +16,11 @@ router.put(
   upload.single("image"),
   authController.uploadProfilePicture,
 );
+router.delete(
+  "/profile-picture",
+  authMiddleware,
+  authController.deleteProfilePicture,
+);
 router.put("/change-password", authMiddleware, authController.changePassword);
 router.post("/forgot-password", authController.forgotPassword);
 router.post("/reset-password", authController.resetPassword);

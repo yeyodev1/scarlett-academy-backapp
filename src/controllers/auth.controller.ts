@@ -162,6 +162,24 @@ export async function uploadProfilePicture(
   }
 }
 
+export async function deleteProfilePicture(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    if (!req.user) throw new CustomError("Unauthorized", 401);
+    const user = await authService.deleteProfilePicture(req.user.userId);
+    successResponse(
+      res,
+      { user },
+      "Profile picture deleted successfully",
+    );
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function forgotPassword(
   req: Request,
   res: Response,
