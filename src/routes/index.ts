@@ -4,6 +4,7 @@ import paymentRouter from "./payment.routes";
 import presaleRouter from "./presale.routes";
 import adminRouter from "./admin.routes";
 import launchReminderRouter from "./launchReminder.routes";
+import pixelRouter from "./pixel.routes";
 
 function routerApi(app: Application) {
   const router = express.Router();
@@ -14,6 +15,7 @@ function routerApi(app: Application) {
   router.use("/presale", presaleRouter);
   router.use("/admin", adminRouter);
   router.use("/launch-reminders", launchReminderRouter);
+  router.use("/pixel", pixelRouter);
 }
 
 export default routerApi;

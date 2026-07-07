@@ -5,6 +5,7 @@ import { User } from "../models/User";
 import { CustomError } from "../errors/customError.error";
 import { hashPassword } from "../helpers/password.helper";
 import { sendPaymentWelcomeEmail } from "../helpers/email.helper";
+import { sendPurchaseEvent } from "./metaPixel.service";
 
 const PAYPHONE_BASE_URL = "https://pay.payphonetodoesposible.com/api/button";
 const PAYPHONE_BOX_CONFIRM_URL = "https://paymentbox.payphonetodoesposible.com/api/confirm";
@@ -259,6 +260,16 @@ export async function confirmPayment(id: string, clientTxId: string) {
           } catch (err) {
             console.error("Failed to send payment welcome email:", err);
           }
+        }
+
+        // Enviar evento Purchase al Pixel de Meta (Conversions API)
+        if (user?.email) {
+          sendPurchaseEvent({
+            email: user.email,
+            value: payment.amount,
+            currency: payment.currency || "USD",
+            eventSourceUrl: process.env.FRONTEND_URL,
+          }).catch((err) => console.error("[MetaPixel] Purchase event failed:", err));
         }
 
         return { status, transactionId: data.transactionId, data, isNewUser: payment.isNewUser, plainPassword: payment.isNewUser ? payment.plainPassword : undefined, emailSent, email: user?.email };
