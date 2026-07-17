@@ -1,18 +1,21 @@
 import "dotenv/config";
 import { dbConnect } from "../src/config/mongo";
 import { createApp } from "../src/app";
+import { seedAdmin } from "../src/scripts/seed-admin";
+import type { Express } from "express";
 
-let initialized = false;
+let app: Express | null = null;
 
-async function ensureDb() {
-  if (initialized) return;
+async function ensureApp(): Promise<Express> {
+  if (app) return app;
   await dbConnect();
-  initialized = true;
+  await seedAdmin();
+  const { app: created } = createApp();
+  app = created;
+  return app;
 }
 
-const { app } = createApp();
-
 export default async function handler(req: any, res: any) {
-  await ensureDb();
-  app(req, res);
+  const application = await ensureApp();
+  application(req, res);
 }
