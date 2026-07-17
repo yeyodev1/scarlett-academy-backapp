@@ -52,10 +52,13 @@ export async function sendPurchaseEvent(data: {
   eventSourceUrl?: string;
   clientIp?: string;
   userAgent?: string;
+  eventId?: string;
+  contentName?: string;
 }): Promise<void> {
   const event = {
     event_name: "Purchase",
     event_time: eventTime(),
+    ...(data.eventId ? { event_id: data.eventId } : {}),
     action_source: "website",
     event_source_url: data.eventSourceUrl || process.env.FRONTEND_URL || "",
     user_data: {
@@ -66,7 +69,7 @@ export async function sendPurchaseEvent(data: {
     custom_data: {
       currency: data.currency || "USD",
       value: data.value,
-      content_name: "Academia Luisa Pita Bejarano",
+      content_name: data.contentName || "Quema Grasa, Construye Musculo",
       content_type: "product",
     },
   };
@@ -93,7 +96,7 @@ export async function sendViewContentEvent(data: {
       ...(data.userAgent ? { client_user_agent: data.userAgent } : {}),
     },
     custom_data: {
-      content_name: "Academia Luisa Pita Bejarano",
+      content_name: "Quema Grasa, Construye Musculo",
       content_type: "product",
     },
   };
@@ -122,7 +125,7 @@ export async function sendAddToCartEvent(data: {
       ...(data.userAgent ? { client_user_agent: data.userAgent } : {}),
     },
     custom_data: {
-      content_name: "Academia Luisa Pita Bejarano",
+      content_name: "Quema Grasa, Construye Musculo",
       content_type: "product",
       ...(data.value !== undefined ? { value: data.value, currency: data.currency || "USD" } : {}),
     },

@@ -171,7 +171,7 @@ export async function prepareAnnualPayment(
   return preparePayment(
     "annual",
     process.env.ANNUAL_PRICE,
-    "Comunidad anual cerrada - Luisa Pita Bejarano",
+    "Comunidad anual - Scarlett Cordova",
     guestData,
     origin,
   );
@@ -184,7 +184,7 @@ export async function prepareMonthlyPayment(
   return preparePayment(
     "monthly",
     process.env.MONTHLY_PRICE,
-    "Mensualidad - Luisa Pita Bejarano Academy",
+    "Mensualidad - Scarlett Cordova",
     guestData,
     origin,
   );
@@ -209,7 +209,7 @@ export async function prepareAnnualPaymentBox(
     amountWithoutTax: amountCents,
     currency: "USD",
     clientTransactionId,
-    reference: "Comunidad anual cerrada - Luisa Pita Bejarano",
+    reference: "Comunidad anual - Scarlett Cordova",
     responseUrl: `${frontendUrl(origin)}/pay-response`,
   };
 }
@@ -233,7 +233,7 @@ export async function prepareMonthlyPaymentBox(
     amountWithoutTax: amountCents,
     currency: "USD",
     clientTransactionId,
-    reference: "Mensualidad - Luisa Pita Bejarano Academy",
+    reference: "Mensualidad - Scarlett Cordova",
     responseUrl: `${frontendUrl(origin)}/pay-response`,
   };
 }

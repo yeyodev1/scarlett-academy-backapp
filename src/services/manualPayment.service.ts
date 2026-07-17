@@ -29,10 +29,10 @@ export async function createManualPayment(
   }
 
   const dataUri = `data:${mimeType};base64,${imageBuffer.toString("base64")}`;
-  const publicId = `academy/payment-receipts/receipt-${userId}-${Date.now()}`;
+  const publicId = `scarlett-academy/payment-receipts/receipt-${userId}-${Date.now()}`;
 
   const uploadResult = await cloudinary.uploader.upload(dataUri, {
-    folder: "academy/payment-receipts",
+    folder: "scarlett-academy/payment-receipts",
     public_id: publicId,
     overwrite: true,
     resource_type: "image",

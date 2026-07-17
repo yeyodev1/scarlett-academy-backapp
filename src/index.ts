@@ -6,7 +6,7 @@ import { seedAdmin } from "./scripts/seed-admin";
 dotenv.config();
 dotenv.config({ path: ".env.local", override: true });
 
-const port = process.env.PORT || 8100;
+const port = process.env.PORT || 8101;
 
 async function main() {
   await dbConnect();

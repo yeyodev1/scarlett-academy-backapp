@@ -1,7 +1,7 @@
 {
-  "name": "luisa-pita-bejarano-backapp",
+  "name": "scarlett-academy-backapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend de Scarlett Cordova para el ebook Quema Grasa, Construye Musculo",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

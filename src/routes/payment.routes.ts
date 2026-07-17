@@ -9,6 +9,9 @@ const router = Router();
 router.post("/prepare", paymentController.prepare);
 router.post("/prepare-monthly", paymentController.prepareMonthly);
 router.post("/prepare-box", paymentController.prepareBox);
+router.post("/ebook/prepare-box", paymentController.prepareEbookBox);
+router.post("/ebook/confirm", paymentController.confirmEbook);
+router.get("/ebook/return", paymentController.returnEbook);
 router.get("/history", authMiddleware, manualPaymentController.history);
 router.get("/confirm", paymentController.confirm);
 router.post(

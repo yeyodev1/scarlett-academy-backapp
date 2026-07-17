@@ -11,9 +11,12 @@ const whitelist = [
   "http://localhost:5174",
   "http://localhost:8101",
   "https://testing-storybrand-frontend.bakano.ec",
-  "https://luisapitabejarano.com",
-  "https://academia.luisapitabejarano.com",
-  "https://vital360.luisapitabejarano.com",
+  "https://scarlettcordova-quemagrasa-cons-musc.netlify.app",
+  process.env.FRONTEND_URL || "",
+  ...(process.env.CORS_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
 ];
 
 const corsOptions: cors.CorsOptions = {

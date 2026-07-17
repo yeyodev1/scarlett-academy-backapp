@@ -177,7 +177,7 @@ export async function uploadProfilePicture(
   const dataUri = `data:${fileMimeType};base64,${fileBuffer.toString("base64")}`;
 
   const result = await cloudinary.uploader.upload(dataUri, {
-    folder: "academy/profile-pictures",
+    folder: "scarlett-academy/profile-pictures",
     public_id: `user-${userId}`,
     overwrite: true,
     resource_type: "image",
@@ -201,7 +201,7 @@ export async function deleteProfilePicture(userId: string) {
 
   try {
     await cloudinary.uploader.destroy(
-      `academy/profile-pictures/user-${userId}`,
+      `scarlett-academy/profile-pictures/user-${userId}`,
     );
   } catch {
     // Ignore Cloudinary errors — image may not exist
