@@ -12,6 +12,7 @@ const whitelist = [
   "http://localhost:8101",
   "https://testing-storybrand-frontend.bakano.ec",
   "https://scarlettcordova-quemagrasa-cons-musc.netlify.app",
+  "https://scarlettcordova-quema-grasa-construye.netlify.app",
   process.env.FRONTEND_URL || "",
   ...(process.env.CORS_ORIGINS || "")
     .split(",")

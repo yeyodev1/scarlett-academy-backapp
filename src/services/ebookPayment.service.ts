@@ -16,6 +16,7 @@ function configuredOrigins(): Set<string> {
     "http://localhost:5174",
     "https://testing-storybrand-frontend.bakano.ec",
     "https://scarlettcordova-quemagrasa-cons-musc.netlify.app",
+    "https://scarlettcordova-quema-grasa-construye.netlify.app",
     process.env.FRONTEND_URL || "",
     ...(process.env.CORS_ORIGINS || "").split(",").map((origin) => origin.trim()),
   ].filter(Boolean));
